@@ -13,7 +13,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

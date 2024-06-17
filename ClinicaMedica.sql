@@ -1,46 +1,29 @@
-CREATE DATABASE ClinicaMedica;
+CREATE DATABASE clinica_medica;
 
-USE ClinicaMedica;
+USE clinica_medica;
 
-CREATE TABLE Paciente (
-    cpf VARCHAR(11) PRIMARY KEY,
+CREATE TABLE usuarios (
+    cpf VARCHAR(11) NOT NULL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     idade INT NOT NULL,
-    telefone VARCHAR(15),
-    email VARCHAR(100),
-    agendar_consulta BOOLEAN DEFAULT FALSE,
-    cancelar_consulta BOOLEAN DEFAULT FALSE
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(100) NOT NULL,
+    tipo_usuario ENUM('PACIENTE', 'MEDICO') NOT NULL
 );
 
-CREATE TABLE Medico (
-    crm VARCHAR(10) PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    especialidade VARCHAR(100),
-    telefone VARCHAR(15),
-    email VARCHAR(100),
-    ver_agenda BOOLEAN DEFAULT FALSE,
-    atender_consulta BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE Consulta (
+CREATE TABLE consultas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    data DATE NOT NULL,
-    hora TIME NOT NULL,
-    cpf_paciente VARCHAR(11),
-    crm_medico VARCHAR(10),
-    confirmar BOOLEAN DEFAULT FALSE,
-    cancelar BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (cpf_paciente) REFERENCES Paciente(cpf),
-    FOREIGN KEY (crm_medico) REFERENCES Medico(crm)
+    cpf_paciente VARCHAR(11) NOT NULL,
+    cpf_medico VARCHAR(11) NOT NULL,
+    data_hora DATETIME NOT NULL,
+    tipo_consulta VARCHAR(50) NOT NULL,
+    FOREIGN KEY (cpf_paciente) REFERENCES usuarios(cpf),
+    FOREIGN KEY (cpf_medico) REFERENCES usuarios(cpf)
 );
 
-CREATE TABLE Agenda (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    crm_medico VARCHAR(10),
-    id_consulta INT,
-    adicionar_consulta BOOLEAN DEFAULT FALSE,
-    remover_consulta BOOLEAN DEFAULT FALSE,
-    listar_consultas BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (crm_medico) REFERENCES Medico(crm),
-    FOREIGN KEY (id_consulta) REFERENCES Consulta(id)
-);
+INSERT INTO usuarios (cpf, nome, idade, email, senha, tipo_usuario) VALUES 
+('12345678901', 'João Silva', 30, 'joao.silva@example.com', 'senha123', 'PACIENTE'),
+('10987654321', 'Maria Oliveira', 45, 'maria.oliveira@example.com', 'senha456', 'MEDICO');
+
+INSERT INTO consultas (cpf_paciente, cpf_medico, data_hora, tipo_consulta) VALUES 
+('12345678901', '10987654321', '2024-06-18 10:00:00', 'Hemograma');
