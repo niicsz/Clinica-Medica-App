@@ -9,12 +9,6 @@ Este é um sistema simples de gerenciamento para uma clínica médica, com funci
 - **Cadastro de médico**: Permite o cadastro de médicos com nome e especialidade.
 - **Agendamento de consulta**: Permite agendar uma consulta para um paciente com um médico, especificando data e hora da consulta.
 
-## Tecnologias Utilizadas
-
-- **Java 8** ou superior
-- **Scanner** para entrada de dados no terminal.
-- **DateTimeFormatter** para formatar datas e horas no padrão `yyyy-MM-dd HH:mm`.
-
 ## Como Usar
 
 ### Passo 1: Compilar e Executar o Projeto
