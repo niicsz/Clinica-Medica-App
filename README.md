@@ -95,7 +95,6 @@ O código está organizado da seguinte maneira:
 ## Melhorias Futuras
 
 - **Validação de Dados**: Adicionar validações de CPF, email e outras entradas de dados.
-- **Persistência de Dados**: Implementar uma camada de persistência de dados real (como um banco de dados) para armazenar as informações de usuários, pacientes, médicos e consultas.
 - **Interface Gráfica**: Criar uma interface gráfica (GUI) com JavaFX ou Swing para facilitar a interação do usuário.
 - **Autenticação de Usuário**: Implementar um sistema de login e autenticação para usuários administrativos.
 
